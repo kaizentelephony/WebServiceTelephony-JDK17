@@ -23,11 +23,12 @@ pipeline {
 
         stage('Archive WAR') {
             steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                archiveArtifacts artifacts: 'jakartaee-hello-world/target/*.war', fingerprint: true
             }
         }
     }
 }
+
 
 
 
