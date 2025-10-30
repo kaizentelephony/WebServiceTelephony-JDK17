@@ -16,6 +16,7 @@ pipeline {
         stage('Build WAR') {
             steps {
               //  bat 'mvn clean package'
+  dir('jakartaee-hello-world') { // <-- if pom.xml is inside this folder
 		  bat 'mvn clean install -X'
             }
         }
@@ -27,3 +28,4 @@ pipeline {
         }
     }
 }
+
