@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven3'   // The Maven name you configured in Jenkins (Global Tool Config)
+        jdk 'JDK17'      // Optional: if you configured a JDK in Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build WAR') {
+            steps {
+              //  bat 'mvn clean package'
+		  bat 'mvn clean install -X'
+            }
+        }
+
+        stage('Archive WAR') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+            }
+        }
+    }
+}
