@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build WAR') {
             steps {
-                     dir('WebServiceTelephony') {   // 👈 correct usage
+                     dir('jakartaee-hello-world') {   // 👈 correct usage
                     bat 'mvn clean package'
                      }
             }
@@ -28,5 +28,6 @@ pipeline {
         }
     }
 }
+
 
 
