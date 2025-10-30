@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logback configuration file for MyApp with logging level set to DEBUG -->
+<configuration status="debug" name="MyApp">
+
+  <!-- Console Appender: Logs output to the console -->
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <!-- Pattern for log messages: date, priority, logger name, and message -->
+      <pattern>%d{dd-MMM-yyyy HH:mm:ss} %p %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Rolling File Appender: Logs output to a file with rolling policy -->
+  <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- The log file location and naming pattern -->
+    <file>/path/to/logs/myapp_%d{yyyy-MM-dd}.log</file>
+    <!-- Rolling policy: rotates log files based on date -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>/path/to/logs/archived/myapp_%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{dd-MMM-yyyy HH:mm:ss} %p %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Logger for a specific package with DEBUG level -->
+  <logger name="com.myapp.package" level="debug">
+    <!-- Do not log messages to parent loggers -->
+    <additivity>false</additivity>
+    <!-- Reference to async appender -->
+    <appender-ref ref="async" />
+  </logger>
+
+  <logger name="root" level="info">
+    <appender-ref ref="stdout" />
+    <!-- Reference to rolling file appender -->
+    <appender-ref ref="rollingFile" />
+  </logger>
+
+  <!-- Asynchronous appender to improve performance -->
+  <async name="async" bufferSize="512">
+    <!-- Maximum size of the logging queue -->
+    <queueSize>1024</queueSize>
+    <!-- Whether to discard logs on overflow -->
+    <discardingOnOverflow>false</discardingOnOverflow>
+    <!-- Reference to rolling file appender -->
+    <appender-ref ref="rollingFile" />
+  </async>
+
+</configuration>
