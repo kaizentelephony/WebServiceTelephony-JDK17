@@ -409,7 +409,7 @@ public class HelloWorldResource {
 	            
 	            try 
 	            {
-	            	Thread.sleep(3000);
+	            	Thread.sleep(2000);
 	            }
 	            catch(Exception e)
 	            {
@@ -1163,9 +1163,61 @@ public class HelloWorldResource {
         }
         return Response.status(200).entity(res).build();
     }
+/************************************************************/
+	
+/* -------------------------------------------------------------- */
+	
+	@Path("/v2/queue/pause")
+	@POST
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.MULTIPART_FORM_DATA })
+    public Response QueuePause(@FormParam("agentno") String agtno) {
+		String res ="";
+        try
+           {
+        	res  = hm.QueuePause(agtno);
+               
+           }
+        catch (Exception ex)
+        {
+        	System.out.println("error"+ex.getMessage());
+           // logger.info("Error creating coffee " + coffee.getName());
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return Response.status(200).entity(res).build();
+    }
 	
 
+
 /*         ------------------------------------------------------ */
+	
+	@Path("/v2/queue/unpause")
+	@POST
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.MULTIPART_FORM_DATA })
+    public Response QueueUnPause(@FormParam("agentno") String agtno) {
+		String res ="";
+        try
+           {
+        	res  = hm.QueueUnPause(agtno);
+               
+           }
+        catch (Exception ex)
+        {
+        	System.out.println("error"+ex.getMessage());
+           // logger.info("Error creating coffee " + coffee.getName());
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return Response.status(200).entity(res).build();
+    }
+	
+
+
+/*         ------------------------------------------------------ */
+
+	
+	
+	
 	@Path("/v2/hold/channel")
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
