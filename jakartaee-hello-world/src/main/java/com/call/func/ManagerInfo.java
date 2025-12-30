@@ -16,6 +16,7 @@ import org.asteriskjava.manager.action.OriginateAction;
 import org.asteriskjava.manager.action.MuteAudioAction;
 import org.asteriskjava.manager.response.ManagerResponse;
 import org.asteriskjava.manager.action.PingAction;
+import org.asteriskjava.manager.action.QueuePauseAction;
 import org.asteriskjava.manager.action.RedirectAction;
 import org.asteriskjava.manager.action.MuteAudioAction.Direction;
 import org.asteriskjava.manager.action.MuteAudioAction.State;
@@ -113,6 +114,94 @@ public class ManagerInfo {
 	 	  }
 							return returnRes;
 	}
+	 
+/**************************************8-------------------------*/
+	 public String QueuePause(String agtno) 
+	 	{
+	 	String returnRes = "";
+	 	  try
+	 	  {
+	 		  ManagerConnectionFactory factory = new ManagerConnectionFactory(
+	 	                "192.168.5.61", "administrator", "mysecret");
+
+	 	        this.managerConnection = factory.createManagerConnection();
+	 		//  OriginateAction originateAction;
+	 		ManagerResponse originateResponse = null;
+	 			QueuePauseAction queueaction;
+	 	
+	 			queueaction = new QueuePauseAction();
+	 			queueaction.setActionId("");
+	 			queueaction.setInterface(agtno);
+	 			queueaction.setPaused(true);
+	 		
+			
+
+							// connect to Asterisk and log in
+							managerConnection.login();
+							
+							// send the originate action and wait for a maximum of 30 seconds for Asterisk
+							// to send a reply
+							originateResponse = managerConnection.sendAction(queueaction, 30000);
+							// originateResponse = 
+							// print out whether the originate succeeded or not
+							System.out.println("Response"+originateResponse.getResponse());
+							returnRes = originateResponse.getResponse();
+						//	System.out.println( originateResponse.getMessage()); 
+							// and finally log off and disconnect
+							managerConnection.logoff();
+	 	  }
+	 	  catch(Exception e)
+	 	  {
+	 		 returnRes = e.getMessage();
+	 		  System.out.print(""+e.getMessage());
+	 	  }
+							return returnRes;
+	}
+	 /**************************************8-------------------------*/
+	 public String QueueUnPause(String agtno) 
+	 	{
+	 	String returnRes = "";
+	 	  try
+	 	  {
+	 		  ManagerConnectionFactory factory = new ManagerConnectionFactory(
+	 	                "192.168.5.61", "administrator", "mysecret");
+
+	 	        this.managerConnection = factory.createManagerConnection();
+	 		//  OriginateAction originateAction;
+	 		ManagerResponse originateResponse = null;
+	 			QueuePauseAction queueaction;
+	 	
+	 			queueaction = new QueuePauseAction();
+	 			queueaction.setActionId("");
+	 			queueaction.setInterface(agtno);
+	 			queueaction.setPaused(true);
+	 		
+			
+
+							// connect to Asterisk and log in
+							managerConnection.login();
+							
+							// send the originate action and wait for a maximum of 30 seconds for Asterisk
+							// to send a reply
+							originateResponse = managerConnection.sendAction(queueaction, 30000);
+							// originateResponse = 
+							// print out whether the originate succeeded or not
+							System.out.println("Response"+originateResponse.getResponse());
+							returnRes = originateResponse.getResponse();
+						//	System.out.println( originateResponse.getMessage()); 
+							// and finally log off and disconnect
+							managerConnection.logoff();
+	 	  }
+	 	  catch(Exception e)
+	 	  {
+	 		 returnRes = e.getMessage();
+	 		  System.out.print(""+e.getMessage());
+	 	  }
+							return returnRes;
+	}
+
+
+	 
 /*-----------------------------------------------------------------------------------*/
 	 public String HoldChannel(String bridgeid) 
 	 	{
