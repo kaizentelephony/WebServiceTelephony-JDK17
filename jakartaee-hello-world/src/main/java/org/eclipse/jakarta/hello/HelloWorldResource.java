@@ -1184,7 +1184,11 @@ public class HelloWorldResource {
            // logger.info("Error creating coffee " + coffee.getName());
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
-        return Response.status(200).entity(res).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*")
+			      .header("Access-Control-Allow-Credentials", "true")
+			      .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+			      .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(res).build();
+		  
     }
 	
 
@@ -1208,7 +1212,11 @@ public class HelloWorldResource {
            // logger.info("Error creating coffee " + coffee.getName());
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
-        return Response.status(200).entity(res).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*")
+			      .header("Access-Control-Allow-Credentials", "true")
+			      .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+			      .header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(res).build();
+		  
     }
 	
 
