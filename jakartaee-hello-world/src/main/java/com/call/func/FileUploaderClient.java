@@ -59,8 +59,13 @@ public class FileUploaderClient {
 				//	System.out.println("http://53.137.131.69:8080/ksvvoiceservicenew/rest/service/api/verification/"+id+"/benz"+ "Form Data "+filePath);
 					
 					//NASSIT
-					System.out.println("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/954312/Test Form Data "+filePath);
-												// server back-end URL
+				//	System.out.println("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/954312/Test Form Data "+filePath);
+												
+					//NASSIT DC
+					System.out.println("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/enrollment/"+id+"NASSIT Form Data "+filePath);
+					
+					
+					// server back-end URL
 				//HttpPost httppost = new HttpPost("http://localhost:8080/app/rest/api/simple");
 //		          HttpPost httppost = new  HttpPost("http://127.0.0.1:8080/ksvvoiceservicenew/rest/service/api/enrollment/"+id+"/benz");         
 					
@@ -68,8 +73,13 @@ public class FileUploaderClient {
 				//	HttpPost httppost = new  HttpPost("http://53.137.131.69:8080/ksvvoiceservicenew/rest/service/api/enrollment/"+id+"/benz");
 					 
 					//NASSIT
-					 HttpPost httppost = new  HttpPost("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/"+id+"/NASSIT"); 
-				//	http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/954312/Test
+					// HttpPost httppost = new  HttpPost("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/"+id+"/NASSIT");
+				
+					// NASSIT Local DC Server 
+					 HttpPost httppost = new  HttpPost("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/enrollment/"+id+"/NASSIT");
+				
+					 
+					 //	http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/954312/Test
 					//  HttpPost httppost = new HttpPost("http://54.226.185.18:8080/ksvvoiceservice/rest/service/genderidentity/12345/GEN");
 		                      MultipartEntity entity = new MultipartEntity();
 
@@ -116,7 +126,11 @@ public class FileUploaderClient {
 			  //     Benz
 				//	System.out.println("http://53.137.131.69:8080/ksvvoiceservicenew/rest/service/api/verification/\"+id+\"/benz  Form Data" +filePath);
 					
-					System.out.println("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/Nassit  Form Data" +filePath);
+					// NASSIT
+				//	System.out.println("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/NASSIT  Form Data" +filePath);
+					
+					//NASSIT DC
+					System.out.println("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/verification/"+id+"/NASSIT  Form Data" +filePath);
 			// http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/954312/Test
 		  //     HttpPost httppost = new  HttpPost("http://127.0.0.1:8080/ksvvoiceservicenew/rest/service/api/verification/"+id+"/benz");         
 		        //BENZ
@@ -124,7 +138,14 @@ public class FileUploaderClient {
 		     
 		         //Nassit
 		         
-		         HttpPost httppost = new  HttpPost("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/Nassit");
+		     //    HttpPost httppost = new  HttpPost("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/Nassit");
+		     
+					
+					 // NASSIT DC Server	
+					HttpPost httppost = new  HttpPost("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/verification/"+id+"/NASSIT");
+		        
+		        
+		         
 		         //  HttpPost httppost = new HttpPost("http://54.226.185.18:8080/ksvvoiceservice/rest/service/genderidentity/12345/GEN");
 		                      MultipartEntity entity = new MultipartEntity();
 
@@ -254,7 +275,66 @@ public class FileUploaderClient {
 			return responseString;
 	}
 
+	public String sendHttpVoiceCaptcha(String id,String otp, String filePath) {
+		// the file we want to upload
+				File inFile = new File(filePath);
+				FileInputStream fis = null;
+				try {
+					fis = new FileInputStream(inFile);
+					DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+				//	logger.debug("http://53.137.131.69:8080/ksvvoiceservicenew/rest/service/api/enrollment/"+id+"/benz" + "Form Data "+filePath);
+					// server back-end URL
+				//HttpPost httppost = new HttpPost("http://localhost:8080/app/rest/api/simple");
+		         System.out.println("http://172.16.16.22:8080/ksvvoiceservicenassitdigit/rest/service/api/voicecaptcha/"+id+"/"+otp+"/DIGIT  Form Data" +filePath);
+		
+		  //     HttpPost httppost = new  HttpPost("http://127.0.0.1:8080/ksvvoiceservicenew/rest/service/api/verification/"+id+"/benz");         
+		// Benz         
+		     //    HttpPost httppost = new  HttpPost("http://53.137.131.69:8080/ksvvoiceservicenew/rest/service/api/verification/"+id+"/benz");
+		         //Nassit Internal
+		   //      HttpPost httppost = new  HttpPost("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/analytics/"+id+"/DIGIT");
+		         
+		         //NASSIT DC
+		     //  http://172.16.16.22:8080/ksvvoiceservicenassitdigit/rest/service/api/voicecaptcha/<Uniqueid>/<OTP>/<App_Name>    
+		         
+		         HttpPost httppost = new  HttpPost("http://172.16.16.22:8080/ksvvoiceservicenassitdigit/rest/service/api/voicecaptcha/"+id+"/"+otp+"/DIGIT");  
+		         
+		         //  HttpPost httppost = new HttpPost("http://54.226.185.18:8080/ksvvoiceservice/rest/service/genderidentity/12345/GEN");
+		                      MultipartEntity entity = new MultipartEntity();
 
+					// set the file input stream and file name as arguments
+					entity.addPart("file", new InputStreamBody(fis, inFile.getName()));
+					//entity.addPart("name", new InputStreamBody(fis,"heloo"));
+					httppost.setEntity(entity);
+
+					// execute the request
+					HttpResponse response = httpclient.execute(httppost);
+					
+					int statusCode = response.getStatusLine().getStatusCode();
+					HttpEntity responseEntity = response.getEntity();
+					 responseString = EntityUtils.toString(responseEntity, "UTF-8");
+					logger.debug("Status Code"+statusCode + "Response"+responseString);
+					System.out.println("[" + statusCode + "] " + responseString);
+					
+				} catch (ClientProtocolException e) {
+					System.err.println("Unable to make connection");
+					logger.debug("Status Code"+e.getMessage() + "Response"+responseString);
+					e.printStackTrace();
+				} catch (IOException e) {
+					logger.debug("Status Code"+e.getMessage() + "Response"+responseString);
+					System.err.println("Unable to read file");
+					e.printStackTrace();
+				} finally {
+					try {
+						if (fis != null) fis.close();
+					} catch (IOException e) {}
+				}
+			return responseString;
+	}
+
+
+	
+	
+	
 	public String sendHttpValidation(String id, String filePath) {
 		// the file we want to upload
 				File inFile = new File(filePath);
