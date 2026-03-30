@@ -62,8 +62,8 @@ public class FileUploaderClient {
 				//	System.out.println("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/954312/Test Form Data "+filePath);
 												
 					//NASSIT DC
-					System.out.println("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/enrollment/"+id+"NASSIT Form Data "+filePath);
-					
+					System.out.println("http://172.25.10.170:8080/ksvvoiceservice/rest/service/api/enrollment/"+id+"NASSIT Form Data "+filePath);
+				//	http://172.25.10.170:8080/ksvvoiceservice/rest/service/api/enrollment/<Unique_Id>/App_name	
 					
 					// server back-end URL
 				//HttpPost httppost = new HttpPost("http://localhost:8080/app/rest/api/simple");
@@ -76,7 +76,11 @@ public class FileUploaderClient {
 					// HttpPost httppost = new  HttpPost("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/"+id+"/NASSIT");
 				
 					// NASSIT Local DC Server 
-					 HttpPost httppost = new  HttpPost("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/enrollment/"+id+"/NASSIT");
+				//	 HttpPost httppost = new  HttpPost("http://172.16.16.22:8080/ksvvoiceservicenassitdigit/rest/service/api/enrollment/"+id+"/NASSIT");
+					 
+					 // TrustNow Server 
+					//http://172.25.10.170:8080/ksvvoiceservice/rest/service/api/enrollment/<Unique_Id>/App_name
+					 HttpPost httppost = new  HttpPost("http://172.25.10.170:8080/ksvvoiceservice/rest/service/api/enrollment/"+id+"/NASSIT");
 				
 					 
 					 //	http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/enrollment/954312/Test
@@ -130,7 +134,7 @@ public class FileUploaderClient {
 				//	System.out.println("http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/NASSIT  Form Data" +filePath);
 					
 					//NASSIT DC
-					System.out.println("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/verification/"+id+"/NASSIT  Form Data" +filePath);
+					System.out.println("http://172.25.10.170:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/NASSIT  Form Data" +filePath);
 			// http://216.48.180.183:8080/ksvvoiceservice/rest/service/api/verification/954312/Test
 		  //     HttpPost httppost = new  HttpPost("http://127.0.0.1:8080/ksvvoiceservicenew/rest/service/api/verification/"+id+"/benz");         
 		        //BENZ
@@ -142,9 +146,13 @@ public class FileUploaderClient {
 		     
 					
 					 // NASSIT DC Server	
-					HttpPost httppost = new  HttpPost("http://172.25.10.170:8080/ksvvoiceservicenassitdigit/rest/service/api/verification/"+id+"/NASSIT");
+			//		HttpPost httppost = new  HttpPost("http://172.16.16.22:8080/ksvvoiceservicenassitdigit/rest/service/api/verification/"+id+"/NASSIT");
+		        //http://172.25.10.170:8080/ksvvoiceservice
 		        
-		        
+					
+					// TRUSTNOW
+					
+					HttpPost httppost = new  HttpPost("http://172.25.10.170:8080/ksvvoiceservice/rest/service/api/verification/"+id+"/NASSIT");
 		         
 		         //  HttpPost httppost = new HttpPost("http://54.226.185.18:8080/ksvvoiceservice/rest/service/genderidentity/12345/GEN");
 		                      MultipartEntity entity = new MultipartEntity();
